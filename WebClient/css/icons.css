@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11 mai 2014, 16:36:21
+    Author     : CEDX
+*/
+
+.icon{
+    background: url(../img/icons.png) no-repeat scroll transparent;
+    position: relative;
+    top: 1px;
+    display: inline-block;    
+    line-height: 1;      
+}
+
+.icon-24{
+    background: url(../img/icons-24.png) no-repeat scroll transparent;
+    position: relative;
+    top: 1px;
+    display: inline-block;    
+    line-height: 1; 
+    width:24px;
+    height: 17px;
+}
+
+.icon-sm{
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+}
+
+.icon-lg{
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+}
+
+.folder{
+    background-position: left -1900px; 
+}
+
+.folder-24{
+    background-position: left -73px; 
+}
+
+.folder-open{
+    background-position: left -155px; 
+}
+
+.folder-open-24{
+    background-position: left -98px; 
+}
+
+.upload{
+    background-position: left -352px; 
+}
+
+.collaborator{
+    background-position: left -2235px; 
+}
+
+.link{
+    background-position: left -1857px; 
+}
+
+.add{
+    background-position: left -258px; 
+}
+
+.eye{
+    background-position: left -3255px; 
+}
+
+.caret-down{
+    background-position: left -3470px; 
+}
+
+.icon-checked{
+    background-position: left -3388px; 
+}
+
+.icon-editable{
+    background-position: left -3182px;
+}
+
+.icon-x{
+    background-position: left -3139px;
+}
+
+.icon-yes{
+    background-position: left -1000px;
+}
+
+.img-default{
+    background-position: left -80px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    border:none;
+    text-decoration: none;
+    margin: 5px;
+}
+
+/*
+
+*/
+
+.icon-filetype{
+    background: url(../img/filestypes.png) no-repeat scroll transparent;
+    position: relative;
+    top: 1px;
+    display: inline-block;    
+    line-height: 1; 
+}
+
+.pdf{
+    background-position: left -1814px; 
+}
+
+.doc{
+    background-position: left -520px; 
+}
+
