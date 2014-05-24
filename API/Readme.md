@@ -1,6 +1,6 @@
 #API 
 
-1.  Models
+##1.  Models
 
 ->Plan : 
 --> plan_id
@@ -30,4 +30,4 @@
 --> plan
 
 
-2.	API MAIN FUNCTIONS
+##2.	API MAIN FUNCTIONS
