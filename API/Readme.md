@@ -2,18 +2,18 @@
 
 ##1.  Models
 
-Plan : 
+###### Plan : 
 plan_id
 name
 plan_description
 price
-> storage_space
-> max_upstream
-> max_downstream
-> daily_shared_link_quota
+storage_space
+max_upstream
+max_downstream
+daily_shared_link_quota
 
 
-->User :
+###### User :
 --> user_id
 --> username
 --> fullname
@@ -21,7 +21,8 @@ price
 --> root_folder
 --> plan
 
-->Folder : 
+
+###### Folder : 
 --> folder_id
 --> user
 --> name
