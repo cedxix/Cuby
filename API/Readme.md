@@ -24,9 +24,17 @@ name
 >folder_id
 / user
 / name
-/ email
-/ root_folder
-/ plan
+/ lft
+/ rgt
+/ created_on
+
+4.  File : 
+>file_id
+/ name
+/ folder
+/ size
+/ myme_type
+/ tags
 
 
 ##2.	API Main functions
