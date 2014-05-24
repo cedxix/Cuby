@@ -3,7 +3,14 @@
 ##1.  Models
 
 1. Plan : 
-plan_id / name / plan_description / price / storage_space  / max_upstream / max_downstream / daily_shared_link_quota
+plan_id
+name
+plan_description
+price
+storage_space
+max_upstream
+max_downstream
+daily_shared_link_quota
 
 
 2.  User :
