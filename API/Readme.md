@@ -30,4 +30,4 @@
 --> plan
 
 
-##2.	API MAIN FUNCTIONS
+##2.	API Main functions
