@@ -2,9 +2,9 @@
 
 ##1.  Models
 
->1. Plan : 
-<plan_id
-<name
+1. Plan : 
+plan_id
+name
 plan_description
 price
 storage_space
