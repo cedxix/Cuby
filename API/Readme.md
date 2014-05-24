@@ -1,7 +1,11 @@
-Models ***************************
+#API 
 
-->Plans : 
+1.Models____________________________________________________
+
+->Plan : 
+--> plan_id
 --> name
+--> plan_description
 --> price
 --> storage_space
 --> max_upstream
@@ -9,10 +13,21 @@ Models ***************************
 --> daily_shared_link_quota
 
 
-->Plans : 
+->User :
+--> user_id
+--> username
+--> fullname
+--> email
+--> root_folder
+--> plan
+
+->Folder : 
+--> folder_id
+--> user
 --> name
---> price
---> storage_space
---> max_upstream
---> max_downstream
---> daily_shared_link_quota
+--> email
+--> root_folder
+--> plan
+
+
+2.	API MAIN FUNCTIONS____________________________________________
