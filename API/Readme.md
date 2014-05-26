@@ -15,9 +15,10 @@ name
 
 2.  User
 >user_id
-/ username
+/ username *
+/ password *
 / fullname
-/ email
+/ email *
 / root_folder
 / plan
 / plan_suscribed_on
