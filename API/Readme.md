@@ -43,15 +43,23 @@ name
 5.  API_Oauth : 
 >API_key
 / user
-/ logged_in_on
-/ logged_out_on
-/ client_type
+/ logged_in_datetime
+/ logged_out_datetime
+/ client_type (win32  / web / mobile )
 
 
 6.  myme_type : 
 >myme_type_id
 / myme_type_name
 / css_class
+
+7.  file_activity : 
+>activity_id
+/ type (Downloaded / Uploaded / Shared / Previewed)
+/ user (by ? )
+/ date
+/ time
+
 
 
 
