@@ -16,21 +16,20 @@ name
 2.  User
 >user_id
 / username *
-/ password *
-/ email *
 / encrypted_passwd *
+/ email *
 / fullname
 / root_folder
 / plan
-/ plan_suscribed_on
+/ plan_subscription_datetime
 / reset_passwd_key
 / reset_passwd_at
 / sign_success_count
-/ sign_errors_count
+/ sign_success_count
 / last_signed_in_ip
 / user_created_at
 / user_updated_at
-/ user_role (admin / advanced / user)
+/ user_role (0.admin / 1.advanced / 2.user)
 / avatar
 
 3.  Folder : 
