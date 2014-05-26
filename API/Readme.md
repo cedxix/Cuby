@@ -17,12 +17,21 @@ name
 >user_id
 / username *
 / password *
-/ fullname
 / email *
+/ encrypted_passwd *
+/ fullname
 / root_folder
 / plan
 / plan_suscribed_on
-/ 
+/ reset_passwd_key
+/ reset_passwd_at
+/ sign_success_count
+/ sign_errors_count
+/ last_signed_in_ip
+/ user_created_at
+/ user_updated_at
+/ user_role (admin / advanced / user)
+/ avatar
 
 3.  Folder : 
 >folder_id
@@ -35,19 +44,22 @@ name
 4.  File : 
 >file_id
 / name
+/ user
 / folder
 / size
 / myme_type
 / tags
-/ creation_date
+/ created_datetime
+/ updated_datetime
 
 5.  API_Oauth : 
 >API_key
 / user
-/ logged_in_datetime
-/ logged_out_datetime
+/ last_logged_datetime
 / client_type (win32  / web / mobile )
-
+/ created_at
+/ revoked_at
+/ expires_in (days)
 
 6.  myme_type : 
 >myme_type_id
