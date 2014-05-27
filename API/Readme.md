@@ -13,28 +13,28 @@ name
 / daily_shared_link_quota
 / bill_intervall (in days)
 
-2.  User
+2.  user_id
 >user_id
-/ username *
+/ user_name *
 / encrypted_passwd *
 / email *
 / fullname
-/ root_folder
-/ plan
+/ folder_id
+/ plan_id
 / plan_subscription_datetime
 / reset_passwd_key
 / reset_passwd_at
 / sign_success_count
 / sign_success_count
 / last_signed_in_ip
-/ user_created_at
-/ user_updated_at
-/ user_role (0.admin / 1.advanced / 2.user)
+/ user_id_created_at
+/ user_id_updated_at
+/ user_id_role (0.admin / 1.advanced / 2.user_id)
 / avatar
 
 3.  Folder : 
 >folder_id
-/ user
+/ user_id
 / name
 / lft
 / rgt
@@ -43,32 +43,37 @@ name
 4.  File : 
 >file_id
 / name
-/ user
-/ folder
+/ user_id
+/ folder_id
 / size
-/ myme_type
+/ myme_type_id
 / tags
 / created_datetime
 / updated_datetime
 
-5.  API_Oauth : 
+5.  Folder_contributor : 
+>folder_id
+/ contributor_id
+
+6.  API_Oauth : 
 >API_key
-/ user
+/ user_id
 / last_logged_datetime
 / client_type (win32  / web / mobile )
 / created_at
 / revoked_at
 / expires_in (days)
 
-6.  myme_type : 
+7.  myme_type : 
 >myme_type_id
 / myme_type_name
 / css_class
 
-7.  file_activity : 
+8.  file_activity : 
 >activity_id
 / type (Downloaded / Uploaded / Shared / Previewed)
-/ user (by ? )
+/ user_id (by ? )
+/ file_id
 / date
 / time
 

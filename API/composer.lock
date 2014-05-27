@@ -3,21 +3,21 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "741a91979f10cbd5645595eb2f621128",
+    "hash": "5c1d595d9f655ec6e38976b008a32948",
     "packages": [
         {
             "name": "illuminate/container",
-            "version": "v4.1.28",
+            "version": "v4.1.29",
             "target-dir": "Illuminate/Container",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "51d590fd7e301f56c567459a26343a8288330f69"
+                "reference": "1bc5798b2241219ec76c57736ab139527cc2d3ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/51d590fd7e301f56c567459a26343a8288330f69",
-                "reference": "51d590fd7e301f56c567459a26343a8288330f69",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/1bc5798b2241219ec76c57736ab139527cc2d3ad",
+                "reference": "1bc5798b2241219ec76c57736ab139527cc2d3ad",
                 "shasum": ""
             },
             "require": {
@@ -49,21 +49,21 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-03-22 20:29:54"
+            "time": "2014-04-21 18:20:26"
         },
         {
             "name": "illuminate/database",
-            "version": "v4.1.28",
+            "version": "v4.1.29",
             "target-dir": "Illuminate/Database",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "c84f39734c6bfe7fbf694ff8dc33d15605553de2"
+                "reference": "00babb09abdb2115c5380c3c1090ca8f533bd30b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/c84f39734c6bfe7fbf694ff8dc33d15605553de2",
-                "reference": "c84f39734c6bfe7fbf694ff8dc33d15605553de2",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/00babb09abdb2115c5380c3c1090ca8f533bd30b",
+                "reference": "00babb09abdb2115c5380c3c1090ca8f533bd30b",
                 "shasum": ""
             },
             "require": {
@@ -111,21 +111,21 @@
                 "orm",
                 "sql"
             ],
-            "time": "2014-04-11 20:10:04"
+            "time": "2014-05-20 13:21:41"
         },
         {
             "name": "illuminate/events",
-            "version": "v4.1.28",
+            "version": "v4.1.29",
             "target-dir": "Illuminate/Events",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "ef6ae5962134a35667f24349bc2c9b8ad1e20c8b"
+                "reference": "4e83ee4f255ec084d510e533ef8e98961aae8729"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/ef6ae5962134a35667f24349bc2c9b8ad1e20c8b",
-                "reference": "ef6ae5962134a35667f24349bc2c9b8ad1e20c8b",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/4e83ee4f255ec084d510e533ef8e98961aae8729",
+                "reference": "4e83ee4f255ec084d510e533ef8e98961aae8729",
                 "shasum": ""
             },
             "require": {
@@ -164,17 +164,17 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v4.1.28",
+            "version": "v4.1.29",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "69b248f240719e8d764ee6ec0384819fa57d60bb"
+                "reference": "7716337401e573ba69923d335c0ee01fd5448df7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/69b248f240719e8d764ee6ec0384819fa57d60bb",
-                "reference": "69b248f240719e8d764ee6ec0384819fa57d60bb",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/7716337401e573ba69923d335c0ee01fd5448df7",
+                "reference": "7716337401e573ba69923d335c0ee01fd5448df7",
                 "shasum": ""
             },
             "require": {
@@ -212,7 +212,7 @@
                     "role": "Creator of Laravel"
                 }
             ],
-            "time": "2014-03-22 20:29:54"
+            "time": "2014-05-02 18:11:11"
         },
         {
             "name": "nesbot/carbon",
@@ -480,7 +480,7 @@
 
     ],
     "platform": {
-        "php": ">=5.3.0"
+        "php": ">=5.5.0"
     },
     "platform-dev": [
 
