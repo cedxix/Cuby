@@ -81,3 +81,6 @@ name
 
 
 ##2.	API Main functions
+
+###### Register User : /signup/plan/:id
+###### Authenticate User : /authenticate/:user

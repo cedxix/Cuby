@@ -18,7 +18,10 @@
         "ext-mcrypt": "Required for HTTP cookie encryption"
     },
     "autoload": {
-        "psr-0": {"Slim": "."},
+        "files": ["class/config.php"],
+        "psr-0": {
+            "Slim": "."
+        },
         "classmap": [
             "models"
         ]
