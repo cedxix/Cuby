@@ -2,7 +2,7 @@
 
 {% block title %}Browse File & Folder{% endblock %} 
 
-{% block breadcrumb %}
+{% block breadcrumbcontent %}
     <div class="container">
         <ul class="breadcrumb">
             <li><a href="#">All files</a> </li>
@@ -62,141 +62,125 @@
         </div>
         <br/>
 
-        <div class="row " >
+        <div class="row " >                
 
-            <div class="col-lg-9" > 
-                <div class="col-md-3">
+            <div class="col-md-9">            
+                <!-- Differents Modals Form *************************************************************************************** -->
 
-                    <ul class="nav nav-list">
-                        <li><label class="tree-toggler nav-header"><a href="#"><span class="icon-24 folder-open-24"></span> Root</a></label>
-                            <ul class="nav nav-list tree">
-                                <li><a href="#"><span class="icon-24 folder-24"></span> Public</a></li>
-                                <li><a href="#"><span class="icon-24 folder-24"></span> Work</a></li>  
-                                <li><a href="#"><span class="icon-24 folder-24"></span> Photos</a></li>  
-                            </ul>
-                        </li>
-                    </ul>
+                <div style="display: none;" id="modal-copy-move" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Copy/Move Selected Item</h4>
+                            </div>
+                            <div class="modal-body">                                        
+                                <ul class="nav nav-list">
+                                    <li><label class="tree-toggler nav-header"><a href="#"><span class="icon-24 folder-open-24"></span> Root</a></label>
+                                        <ul class="nav nav-list tree">
+                                            <li><a href="#"><span class="icon-24 folder-24"></span> Public</a></li>
+                                            <li><a href="#"><span class="icon-24 folder-24"></span> Work</a></li>  
+                                            <li><a href="#"><span class="icon-24 folder-24"></span> Photos</a></li>  
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Move</button>
+                                <button type="button" class="btn btn-primary">Copy</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
                 </div>
 
-                <div class="col-md-9">            
-                    <!-- Differents Modals Form *************************************************************************************** -->
 
-                    <div style="display: none;" id="modal-copy-move" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                <!-- END Differents Modals Form *************************************************************************************** -->
 
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <h4 class="modal-title" id="myModalLabel">Copy/Move Selected Item</h4>
-                                </div>
-                                <div class="modal-body">                                        
-                                    <ul class="nav nav-list">
-                                        <li><label class="tree-toggler nav-header"><a href="#"><span class="icon-24 folder-open-24"></span> Root</a></label>
-                                            <ul class="nav nav-list tree">
-                                                <li><a href="#"><span class="icon-24 folder-24"></span> Public</a></li>
-                                                <li><a href="#"><span class="icon-24 folder-24"></span> Work</a></li>  
-                                                <li><a href="#"><span class="icon-24 folder-24"></span> Photos</a></li>  
-                                            </ul>
-                                        </li>
+                <!-- File List & Options *************************************************************************************** -->
+
+                <table class="table table-hover table-condensed table-striped" id="table-files">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+                            Group Action <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download All</a></li>
+                            <li class="divider"></li>                                               
+                            <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File All</a></li>
+                        </ul>
+                    </div>
+                    </th>
+                    <th><button type="button" class="btn icon icon-sm icon-checked"></button></span></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>                           
+                        <tr>                                  
+                            <td>
+                                <span class="icon-filetype icon-lg pdf pull-left"></span>
+                                <a href="#" style="text-decoration: none;color:black;font-weight: bold">Document-Usine.pdf</a>
+                                <a class="btn icon icon-sm icon-editable" href="#" id="rename-file" data-type="text" data-pk="1" data-url="/post" data-title="Rename file"></a><br/>
+                                <span class="text-muted">Uploaded 28 Feb, 2014 By <a href="#">Damien Marley</a> 1 - 28.0 KB</span>
+                            </td> 
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn icon icon-sm caret-down dropdown-toggle" data-toggle="dropdown"></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#" class=""><span class="glyphicon glyphicon-edit" style="margin-right: 5px"></span>Rename</a></li>
+                                        <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-send" style="margin-right: 5px"></span>Send Link by Email</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-paperclip" style="margin-right: 5px"></span>Copy Link</a></li>                                               
+                                        <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-trash" style="margin-right: 5px"></span>Delete File</a></li>
                                     </ul>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Move</button>
-                                    <button type="button" class="btn btn-primary">Copy</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
-
-
-                    <!-- END Differents Modals Form *************************************************************************************** -->
-
-                    <!-- File List & Options *************************************************************************************** -->
-
-                    <table class="table table-hover table-condensed table-striped" id="table-files">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
-                                Group Action <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download All</a></li>
-                                <li class="divider"></li>                                               
-                                <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File All</a></li>
-                            </ul>
-                        </div>
-                        </th>
-                        <th><button type="button" class="btn icon icon-sm icon-checked"></button></span></th>
-
+                            </td>
+                            <td><input type="checkbox" name="selecta" class="" value="dXBsb2Fkcy9jb3B5LnBuZw==" ></td>
                         </tr>
-                        </thead>
-                        <tbody>                           
-                            <tr>                                  
-                                <td>
-                                    <span class="icon-filetype icon-lg pdf pull-left"></span>
-                                    <a href="#" style="text-decoration: none;color:black;font-weight: bold">Document-Usine.pdf</a>
-                                    <a class="btn icon icon-sm icon-editable" href="#" id="rename-file" data-type="text" data-pk="1" data-url="/post" data-title="Rename file"></a><br/>
-                                    <span class="text-muted">Uploaded 28 Feb, 2014 By <a href="#">Damien Marley</a> 1 - 28.0 KB</span>
-                                </td> 
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn icon icon-sm caret-down dropdown-toggle" data-toggle="dropdown"></button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" class=""><span class="glyphicon glyphicon-edit" style="margin-right: 5px"></span>Rename</a></li>
-                                            <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-send" style="margin-right: 5px"></span>Send Link by Email</a></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-paperclip" style="margin-right: 5px"></span>Copy Link</a></li>                                               
-                                            <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-trash" style="margin-right: 5px"></span>Delete File</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                                <td><input type="checkbox" name="selecta" class="" value="dXBsb2Fkcy9jb3B5LnBuZw==" ></td>
-                            </tr>
-                            <tr>                                  
-                                <td>
-                                    <span class="icon-filetype icon-lg pdf pull-left"></span>
-                                    <a href="#" style="text-decoration: none;color:black;font-weight: bold">
-                                        Document-Usine.pdf
-                                    </a >
-                                    <a class="btn icon icon-sm icon-editable" href="#" id="rename-file" data-type="text" data-pk="1" data-url="/post" data-title="Rename file">&zwj;</a>
-                                    <br/>
+                        <tr>                                  
+                            <td>
+                                <span class="icon-filetype icon-lg pdf pull-left"></span>
+                                <a href="#" style="text-decoration: none;color:black;font-weight: bold">
+                                    Document-Usine.pdf
+                                </a >
+                                <a class="btn icon icon-sm icon-editable" href="#" id="rename-file" data-type="text" data-pk="1" data-url="/post" data-title="Rename file">&zwj;</a>
+                                <br/>
 
-                                    <span class="text-muted">Uploaded 28 Feb, 2014 By <a href="#">Damien Marley</a> 1 - 28.0 KB</span>
-                                </td> 
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn icon icon-sm caret-down dropdown-toggle" data-toggle="dropdown"></button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#" class=""><span class="glyphicon glyphicon-edit" style="margin-right: 5px"></span>Rename</a></li>
-                                            <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-send" style="margin-right: 5px"></span>Send Link by Email</a></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-paperclip" style="margin-right: 5px"></span>Copy Link</a></li>                                               
-                                            <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File</a></li>
-                                            <li class="divider"></li>
-                                            <li><a href="#"><span class="glyphicon glyphicon-trash" style="margin-right: 5px"></span>Delete File</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                                <td><input type="checkbox" name="selecta" class="" value="dXBsb2Fkcy9jb3B5LnBuZw==" ></td>
-                            </tr>
+                                <span class="text-muted">Uploaded 28 Feb, 2014 By <a href="#">Damien Marley</a> 1 - 28.0 KB</span>
+                            </td> 
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn icon icon-sm caret-down dropdown-toggle" data-toggle="dropdown"></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#" class=""><span class="glyphicon glyphicon-edit" style="margin-right: 5px"></span>Rename</a></li>
+                                        <li><a href="#" class=""><span class="glyphicon glyphicon-download-alt" style="margin-right: 5px"></span>Download</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-send" style="margin-right: 5px"></span>Send Link by Email</a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-paperclip" style="margin-right: 5px"></span>Copy Link</a></li>                                               
+                                        <li><a href="#" data-toggle="modal" data-target="#modal-copy-move"><span class="glyphicon glyphicon-move" style="margin-right: 5px"></span>Move/Copy File</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-trash" style="margin-right: 5px"></span>Delete File</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td><input type="checkbox" name="selecta" class="" value="dXBsb2Fkcy9jb3B5LnBuZw==" ></td>
+                        </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-
-
+                    </tbody>
+                </table>
             </div>
+
+
             <div class="col-lg-3" style="border-left: 1px solid silver">
                 <p><strong>Account.</strong>                </p>
                 <span ><span class="glyphicon glyphicon-user"></span><a href=""> Personal Account <span class="label label-primary">UPGRADE</span></a></span><br/>

@@ -1,0 +1,85 @@
+{% extends "base.twig" %}
+{% block  title %} 
+    Connection
+{% endblock %}
+
+{% block content %}
+    {% block nav %}
+    {% endblock %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-10 col-md-offset-1" style="margin-top: 20px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Bienvenue<small>,<br/>creer un nouveau compte.</small></h3>
+                    </div>
+                    <div class="panel-body" >                            
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+                        <div class="col-md-12 ">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <form role="form" method="POST" action="{{action_url}}" style=" margin: 0 auto;">
+
+                                        <input type="text" placeholder="Full name" class="form-control" id="fullname" name="fullname">
+
+                                        <div class="required-field-block">
+                                            <input type="text" placeholder="Username/Pseudo" class="form-control" id="username" name="username" required>
+                                            <div class="required-icon">
+                                                <div class="text">*</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="required-field-block">
+                                            <input type="email" placeholder="Email" class="form-control" id="email" name="email" required>
+                                            <div class="required-icon">
+                                                <div class="text">*</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="required-field-block">
+                                            <input type="password" placeholder="Password" class="form-control" id="password" name="password">
+                                            <div class="required-icon">
+                                                <div class="text">*</div>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="form-group" >
+                                                <input type="submit" class="btn btn-lg btn-success" value="{{action_name}}">
+                                            </div>
+                                        </div>  
+                                    </form>
+                                </div>     
+
+                                <div class="col-md-4">
+                                    <img src="img/" width="160px" class="center-block" /> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="controls">
+                                    <hr/>
+                                    <p style='margin-left:20px ' class="text-danger"> 
+                                        Les champs suivis d'une étoile sont obligatoires.
+                                    </p>
+                                    <p style='margin-left:20px '> 
+                                        En vous inscrivant vous acceptez! 
+                                        <a href="#" onClick="$('#loginbox').hide();
+                                                $('#signupbox').show()">
+                                            Termes et conditions
+                                        </a><br/>
+                                    </p>
+                                </div>    
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>                     
+            </div> 
+        </div>
+    </div>
+{% endblock %}

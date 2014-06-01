@@ -15,10 +15,14 @@ $(document).on("ready", function() {
 
     //Tab in settings page
     $('#settingsTab a').click(function(e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
-
-
+        e.preventDefault();
+        $(this).tab('show');
+    });
+    //
+    $('.required-icon').tooltip({
+        placement: 'left',
+        title: 'Required field'
+    });
+    //
 });
 
