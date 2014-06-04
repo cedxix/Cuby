@@ -21,10 +21,8 @@
                             <div class="row">
                                 <div class ="">
 
-                                    <div id="dropbox">
-                                        <form action="{{api_uri}}" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
-                                            <h6>Drag and Drop your Files here</h6>
-                                        </form>
+                                    <div id="myDz" class="dropzone">
+
                                     </div>
 
                                 </div>
@@ -49,6 +47,17 @@
 {% endblock %}
 
 {% block jsext %}
-    <script src="{{hostpath}}/js/dz/dropzone.js" type="text/javascript"></script>
-    <script src="{{hostpath}}/js/dz/script.js" type="text/javascript"></script>
+    <script src="{{hostpath}}/js/dz/dropzone.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+
+        $(function() {
+            //alert('yo');
+            Dropzone.autoDiscover = false;            
+            $("div#myDz").dropzone({
+                url: "{{api_uri}}",
+                paramName: "file",
+                maxFilesize: 10 // MB    
+            });            
+        });
+    </script> 
 {% endblock %}

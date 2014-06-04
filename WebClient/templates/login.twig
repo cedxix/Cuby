@@ -20,22 +20,22 @@
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-                        <form id="loginform" class="form-horizontal" role="form">
+                        <form id="loginform" class="form-horizontal" role="form" method="POST" action="{{login_url}}">
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="email">                                        
+                                <input id="login-username" type="text" class="form-control" name="username" id ="username" value="" placeholder="email">                                        
                             </div>
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                <input id="login-password" type="password" class="form-control" name="password" id="password" placeholder="password">
                             </div>
 
                             <div class="input-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> Se souvenir de moi
+                                        <input id="login-remember" type="checkbox" name="remember"  id="remember" value="1"> Se souvenir de moi
                                     </label>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                     <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%;" >
                                         <p style='margin-left:20px '> 
                                             Vous n'avez pas de compte! 
-                                            <a href="#" onClick="$('#loginbox').hide();
+                                            <a href="register" onClick="$('#loginbox').hide();
                                                         $('#signupbox').show()">
                                                 Inscrivez vous ici
                                             </a><br/>

@@ -5,14 +5,8 @@
  */
 
 $(document).on("ready", function() {
-    //alert('this is OK');
-
-    // x-editable for filename
-    name: 'username', $('#table-files a#rename-file').editable({
-        url: '/post',
-        emptytext: ''
-    });
-
+//    alert('this is OK');
+    
     //Tab in settings page
     $('#settingsTab a').click(function(e) {
         e.preventDefault();
@@ -23,6 +17,7 @@ $(document).on("ready", function() {
         placement: 'left',
         title: 'Required field'
     });
-    //
+    //Dropzone
+   
 });
 

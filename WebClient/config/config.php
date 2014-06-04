@@ -17,6 +17,7 @@ define("USER_CREATED_SUCCESS", true);
 define("USER_CREATED_FAILED", false);
 
 define('API_URI', "http://localhost/cubbyhole/API");
-define('API_BASE_URL', "http://localhost/cubbyhole/API");
+define('API_BASE_URL', "http://localhost/cubbyhole/api");
+define('CLIENT_BASE_URL', "http://localhost/cubbyhole/webclient");
 
 

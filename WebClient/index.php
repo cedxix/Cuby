@@ -23,15 +23,13 @@ $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
 $app->get('/', 'getHome');
 $app->get('/test', 'testIt');
 $app->get('/users(/:id)', 'getUsers');
+$app->get('/settings(/users(/:id))', 'userSettings');
 $app->get('/files(/browse(/:dirId))', 'browseDir');
-$app->map('/upload', 'uploadFiles')->via('GET', 'POST');
+$app->map('/files/upload', 'uploadFiles')->via('GET', 'POST');
 
 //
 
 
-$app->get('/settings', function () use ($app) {
-    $app->render('settings.twig');
-});
 
 $app->map('/register', function() use ($app) {
     if ($app->request()->getMethod() === 'POST') {
@@ -57,7 +55,9 @@ function testIt() {
 function getHome() {
     $app = \Slim\Slim::getInstance();
     $app->render('login.twig', array(
-        "title"=>"Login"
+        'title' => 'Login',
+        'base_url' => '/',
+        'login_url' => API_URI.'/login'
     ));
 }
 
@@ -110,4 +110,12 @@ function browseDir ($dirId = null)
             break;
     }
     
+}
+
+function userSettings ($id = null)
+{
+    $app = \Slim\Slim::getInstance();
+    $app->render('settings.twig', array(
+        'tite'=>'Account & Settings'
+    ));
 }
