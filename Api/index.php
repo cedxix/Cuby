@@ -6,7 +6,9 @@
 require 'vendor/autoload.php';
 \Slim\Slim::registerAutoloader();
 
-use \User as User;
+use \UserModel as User;
+Use \FileController as FileDao;
+use \FileModel as File;
 
 //
 $app = new \Slim\Slim(array('templates.path' => 'templates'));
@@ -14,10 +16,10 @@ $app = new \Slim\Slim(array('templates.path' => 'templates'));
 $app->view(new \Slim\Views\Twig());
 $app->view->parserOptions = unserialize(CONFIG_APP);
 $app->view->parserExtensions = array(new \Slim\Views\TwigExtension());
-//
+// 
 // ROUTES
 $app->get('/', 'getHome');
-$app->get('/login', 'logIn');
+$app->map('/login', 'getLoginPage')->via('POST', 'GET');
 $app->map('/register', 'registerUser')->via('GET', 'POST');
 $app->map('/files/upload', 'uploadFiles')->via('GET', 'POST');
 //$app->get('/files/browse(/:dirId)', 'browseDir');
@@ -25,29 +27,52 @@ $app->get('/users(/:id)', 'getUsers');
 //$app->get('/users/edit/plan/:planId', 'editPlan');
 $app->delete('/users/del/:id', 'deleteUser');
 //
+// SECURING ROUTES
+
+
 $app->run();
 
 // ROUTING ****************************************************
 
 function getHome() {
-    echo '<h1>HOME PAGE</h1>';
+    sendResponse(200, false, 'success', 'Home page | API is working great', null);                                    
 }
 
-function logIn() {
-    echo '<h1>HOME PAGE</h1>';
+function getLoginPage() {
+
+    $app = \Slim\Slim::getInstance();   
+    $req = $app->request();
+    switch ($app->request()->getMethod()) {
+        case 'GET':
+            sendResponse(200, false, 'success', 'Welcome to authentication page', null);                                
+            //
+            break;
+        case 'POST' :
+            //            
+            echo ($req->post('username').'-----------'. $req->post('password')) ;            
+            $check = doLogin($req->post('username'), $req->post('password'));            
+            //   
+            if ($check) {
+                sendResponse(200, false, 'success', 'Authentication success', $user = \UserModel::where('username', '=', $req->post('username'))->first());                                
+            } else {
+                sendResponse(404, true, 'fail', 'Authentication failed, User/Password not found', null);                                
+            }
+
+            break;
+    }
 }
 
 function getUsers($id = null) {
-    $app = \Slim\Slim::getInstance();
-    $userDao = new \UserController();
-    $response = array();
 
-    if ($id == null) {
-        $reponse["status"] = "Success";
-        $reponse["content"] = $userDao->getAll()->toArray();
-        sendResponse(200, $reponse);
-    } else {
-        sendResponse(200, $userDao->get($id)->toArray());
+    $userDao = new \UserController();
+    try {
+        if ($id == null) {
+            sendResponse(200, false, 'success', 'Users found', $userDao->getAll()->toArray());
+        } else {            
+            sendResponse(200, false, 'success', 'User found', $userDao->get($id)->toArray());
+        }
+    } catch (Exception $ex) {
+        sendResponse(404, true, 'fail', 'Users not found', $ex);
     }
 }
 
@@ -57,8 +82,7 @@ function registerUser() {
 
     switch ($req->getMethod()) {
         case "POST":
-            $userDao = new \UserController();
-            echo "<h1>SIGN UP</h1>";
+            $userDao = new \UserController();            
 //
             $user = new User(array(
                 'fullname' => $req->post('fullname'),
@@ -69,18 +93,12 @@ function registerUser() {
                 'updated_at' => date('Y-m-d H:i:s', time())
             ));
             if ($userDao->create($user) == USER_CREATED_SUCCESSFULLY) {
-                $response = array(
-                    "error" => false,
-                    "message" => 'good'
-                );
-                sendResponse(201, $response);
+                sendResponse(201, false, 'success', 'User created successfully', null);
             }
-
             break;
 
         case 'GET':
-            \Slim\Slim::getInstance()->redirect($_SERVER['REQUEST_URI']);
-            echo '<h1>SIGN FAIl</h1>';
+            sendResponse(404, true, 'fail', 'You are not allow to view this page', null);
             break;
     }
 }
@@ -94,23 +112,35 @@ function deleteUser($id) {
     }
 }
 
-function sendResponse($status, $response = null) {
-    $app = \Slim\Slim::getInstance();
-    $app->status($status);
-    $app->contentType('application/json');
-    echo json_encode($response);
-}
 
 function uploadFiles() {
     $uploader = new FileHelper();
     $upload_dir = ROOT_FOLDER;
     $app = \Slim\Slim::getInstance();
-    
-    if ($app->request()->getMethod() == 'POST') {        
-        $uploader->upload($app,$upload_dir);   
+    $fileDao = new FileDao();
+
+    if ($app->request()->getMethod() == 'POST') {
+//        if ($uploader->upload($app, $upload_dir)) {        
+        $fileInfo_to_store = $uploader->upload($app, $upload_dir);
+        echo json_encode($fileInfo_to_store);
+        $fileDao->create($fileInfo_to_store);
+//        }
     } else {
         echo ROOT_FOLDER;
     }
+}
+
+function sendResponse($code = 404, $error = true, $status ='fail', $message = null, $data = null) {
+    $app = \Slim\Slim::getInstance();
+    $app->status($code);
+    $app->contentType('application/json');
+    $response = array(
+        "error" => $error,
+        "status" => $status,
+        "message" => $message,
+        "data" => $data
+    );
+    echo json_encode($response);
 }
 
 // Helper functions
@@ -124,4 +154,27 @@ function get_extension($file_name) {
     $ext = explode('.', $file_name);
     $ext = array_pop($ext);
     return strtolower($ext);
+}
+
+function doLogin($username, $password) {
+    //
+    try {               
+        $user = \UserModel::select('username')->where('username', '=', $username)->get(array('username', 'encrypted_password'));    
+//        $crypt_pass = $user->encrypted_password ;
+        echo $user->encrypted_password ;
+        if ($user != null) {
+            $check = \PassHash::checkHash($crypt_pass, $password);
+            if ($check) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+        //
+    } catch (Exception $ex) {
+        throw $ex;
+    }
 }

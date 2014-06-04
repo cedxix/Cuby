@@ -11,28 +11,29 @@
  *
  * @author CEDX
  */
-use Illuminate\Illuminate\Database\Eloquent\Model as Model;
+use \Illuminate\Database\Eloquent\Model as Model;
 
-class File extends Model {
+class FileModel extends Model {
 
     //put your code here
     protected $table = 'file';
+    protected $guarded = array('id');
 
     // Relationships
-    public function folder() {
-        return $this->belongsToM('Folder');
-    }
-
-    public function user() {
-        return $this->belongsTo('User');
-    }
-
-    public function file_activities() {
-        return $this->belongsToMany('File_activity');
-    }
-
-    public function myme_type() {
-        return $this->belongsTo('Myme_type');
-    }
+//    public function folder() {
+//        return $this->belongsToM('Folder');
+//    }
+//
+//    public function user() {
+//        return $this->belongsTo('User');
+//    }
+//
+//    public function file_activities() {
+//        return $this->belongsToMany('File_activity');
+//    }
+//
+//    public function myme_type() {
+//        return $this->belongsTo('Myme_type');
+//    }
 
 }

@@ -12,7 +12,8 @@
         "slim/views": "*",
         "slim/extras": "*",
         "twig/twig": "*",
-        "illuminate/database": "*"
+        "illuminate/database": "*",
+        "jeremykendall/slim-auth": "*"
     },
     "suggest": {
         "ext-mcrypt": "Required for HTTP cookie encryption"

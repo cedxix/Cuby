@@ -11,7 +11,7 @@
  *
  * @author CEDX
  */
-use Illuminate\Illuminate\Database\Eloquent\Model as Model;
+use \Illuminate\Database\Eloquent\Model as Model;
 
 class Folder extends Model {
 
@@ -19,12 +19,12 @@ class Folder extends Model {
     protected $table = 'folder';
 
     // Relationships
-    public function user() {
-        return $this->belongsTo('User');
-    }
-
-    public function file() {
-        return $this->hasMany('File');
-    }
+//    public function user() {
+//        return $this->belongsTo('User');
+//    }
+//
+//    public function file() {
+//        return $this->hasMany('File');
+//    }
 
 }

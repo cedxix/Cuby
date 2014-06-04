@@ -11,15 +11,15 @@
  *
  * @author CEDX
  */
-use Illuminate\Illuminate\Database\Eloquent\Model as Model;
+use \Illuminate\Database\Eloquent\Model as Model;
 
 class Myme_type extends Model {
 
     //put your code here
     protected $table = 'myme_type';
     // Relationships
-    public function files() {
-        return $this->hasMany('File');
-    }
+//    public function files() {
+//        return $this->hasMany('File');
+//    }
     
 }

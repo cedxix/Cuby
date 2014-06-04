@@ -11,18 +11,18 @@
  *
  * @author CEDX
  */
-use Illuminate\Illuminate\Database\Eloquent\Model as Model;
+use \Illuminate\Database\Eloquent\Model as Model;
 
 class File_activity extends Model {
 
     //put your code here
     protected $table = 'file_activity';
     // Relationships
-    public function folder() {
-        return $this->belongsTo('Folder');
-    }
-    public function files() {
-        return $this->belongsToMany('File');
-    }
+//    public function folder() {
+//        return $this->belongsTo('Folder');
+//    }
+//    public function files() {
+//        return $this->belongsToMany('File');
+//    }
 
 }

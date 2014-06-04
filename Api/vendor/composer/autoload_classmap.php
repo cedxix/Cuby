@@ -6,15 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'API_OAuth' => $baseDir . '/models/OAuth.php',
-    'File' => $baseDir . '/models/file.php',
-    'FileHelper' => $baseDir . '/helper/FileHelper.php',
+    'API_OAuth' => $baseDir . '/models/oAuth.php',
+    'FileController' => $baseDir . '/controller/FileController.php',
+    'FileHelper' => $baseDir . '/helper/fileHelper.php',
+    'FileModel' => $baseDir . '/models/file.php',
     'File_activity' => $baseDir . '/models/activity.php',
     'Folder' => $baseDir . '/models/folder.php',
     'Myme_type' => $baseDir . '/models/myme.php',
     'PassHash' => $baseDir . '/helper/passHash.php',
     'Plan' => $baseDir . '/models/plan.php',
-    'User' => $baseDir . '/models/user.php',
-    'UserController' => $baseDir . '/controller/userController.php',
+    'UserController' => $baseDir . '/controller/UserController.php',
+    'UserModel' => $baseDir . '/models/user.php',
     'Validations' => $baseDir . '/helper/validations.php',
 );

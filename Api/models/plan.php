@@ -11,7 +11,7 @@
  *
  * @author CEDX
  */
-use Illuminate\Illuminate\Database\Eloquent\Model as Model;
+use \Illuminate\Database\Eloquent\Model as Model;
 
 class Plan extends Model {
     
@@ -24,8 +24,8 @@ class Plan extends Model {
      * @var array
      */
     // Relationships
-    public function plan_user() {
-        return $this->hasMany('User');
-    }
+//    public function plan_user() {
+//        return $this->hasMany('User');
+//    }
 
 }
