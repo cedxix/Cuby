@@ -49,7 +49,7 @@ function getLoginPage() {
             break;
         case 'POST' :
             //            
-            echo ($req->post('username').'-----------'. $req->post('password')) ;            
+//            echo ($req->post('username').'-----------'. $req->post('password')) ;            
             $check = doLogin($req->post('username'), $req->post('password'));            
             //   
             if ($check) {
@@ -156,14 +156,18 @@ function get_extension($file_name) {
     return strtolower($ext);
 }
 
-function doLogin($username, $password) {
+function doLogin($username = null  , $password = null) {
+    
+    if($username == null || $password == null){return false;}
     //
-    try {               
-        $user = \UserModel::select('username')->where('username', '=', $username)->get(array('username', 'encrypted_password'));    
-//        $crypt_pass = $user->encrypted_password ;
-        echo $user->encrypted_password ;
-        if ($user != null) {
+    try {            
+        $q = \UserModel::select('id','username','encrypted_password')->whereusername($username);   
+        $user = $q->get()->toArray();
+        $crypt_pass =  $user[0]['encrypted_password']     ;    
+        
+        if ($q != null) {
             $check = \PassHash::checkHash($crypt_pass, $password);
+             //echo $q;
             if ($check) {
                 return true;
             } else {
