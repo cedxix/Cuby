@@ -3,8 +3,38 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1a07853a2aa010cae615253d35404359",
+    "hash": "a1348cae48a62b13d5a19570c76f5233",
     "packages": [
+        {
+            "name": "gargron/fileupload",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gargron/fileupload.git",
+                "reference": "0883a61b614fff96ddc5b1d39b646eafe470e7f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gargron/fileupload/zipball/0883a61b614fff96ddc5b1d39b646eafe470e7f2",
+                "reference": "0883a61b614fff96ddc5b1d39b646eafe470e7f2",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "FileUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "File uploading library capable of handling large/chunked/multiple file uploads",
+            "time": "2014-02-20 14:23:50"
+        },
         {
             "name": "illuminate/container",
             "version": "v4.2.1",
@@ -202,6 +232,64 @@
                 }
             ],
             "time": "2014-05-30 16:22:28"
+        },
+        {
+            "name": "league/oauth2-server",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/oauth2-server.git",
+                "reference": "a9b52ab56a5bac383f7d300aec2e234285d7f861"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/a9b52ab56a5bac383f7d300aec2e234285d7f861",
+                "reference": "a9b52ab56a5bac383f7d300aec2e234285d7f861",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "replace": {
+                "league/oauth2server": "*",
+                "lncd/oauth2": "*"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.7.2"
+            },
+            "suggest": {
+                "zetacomponents/database": "Allows use of the build in PDO storage classes"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "League\\OAuth2\\Server": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Bilbie",
+                    "email": "hello@alexbilbie.com",
+                    "homepage": "http://www.alexbilbie.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A lightweight and powerful OAuth 2.0 authorization and resource server library with support for all the core specification grants. This library will allow you to secure your API with OAuth and allow your applications users to approve apps that want to access their data from your API.",
+            "homepage": "https://github.com/php-loep/oauth2-server",
+            "keywords": [
+                "Authentication",
+                "api",
+                "authorization",
+                "oauth",
+                "oauth2",
+                "resource",
+                "server"
+            ],
+            "time": "2014-05-23 15:29:49"
         },
         {
             "name": "nesbot/carbon",

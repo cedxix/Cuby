@@ -11,9 +11,11 @@ return array(
     'Slim\\Views' => array($vendorDir . '/slim/views'),
     'Slim\\Extras' => array($vendorDir . '/slim/extras'),
     'Slim' => array($baseDir . '/', $vendorDir . '/slim/slim'),
+    'League\\OAuth2\\Server' => array($vendorDir . '/league/oauth2-server/src'),
     'Illuminate\\Support' => array($vendorDir . '/illuminate/support'),
     'Illuminate\\Events' => array($vendorDir . '/illuminate/events'),
     'Illuminate\\Database' => array($vendorDir . '/illuminate/database'),
     'Illuminate\\Container' => array($vendorDir . '/illuminate/container'),
+    'FileUpload\\' => array($vendorDir . '/gargron/fileupload/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );

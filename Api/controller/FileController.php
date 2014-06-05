@@ -33,19 +33,19 @@ class FileController {
 
     public function edit(File $file) {
         //
-        $file = File::find($user);
+        $file = File::find($File);
         $file->save($options);
     }
 
     public function update($id, $file = null) {
         //
-        $file = user::find($id);
+        $file = File::find($id);
         $file->save();
     }
 
     public function delete($id) {
         //
-        $file = user::find($id);
+        $file = File::find($id);
         $file->delete();
         return true;
     }

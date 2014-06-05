@@ -12,8 +12,9 @@
         "slim/views": "*",
         "slim/extras": "*",
         "twig/twig": "*",
-        "illuminate/database": "*",
-        "jeremykendall/slim-auth": "*"
+        "illuminate/database": "*",        
+        "league/oauth2-server": "2.*",
+        "gargron/fileupload": "1.0.*"
     },
     "suggest": {
         "ext-mcrypt": "Required for HTTP cookie encryption"

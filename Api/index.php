@@ -9,6 +9,7 @@ require 'vendor/autoload.php';
 use \UserModel as User;
 Use \FileController as FileDao;
 use \FileModel as File;
+use \Apfelbox\FileDownload\FileDownload as fileDownload;
 
 //
 $app = new \Slim\Slim(array('templates.path' => 'templates'));
@@ -22,8 +23,11 @@ $app->get('/', 'getHome');
 $app->map('/login', 'getLoginPage')->via('POST', 'GET');
 $app->map('/register', 'registerUser')->via('GET', 'POST');
 $app->map('/files/upload', 'uploadFiles')->via('GET', 'POST');
+$app->map('/files/:id/download', 'downloadFile')->via('GET', 'POST');
+$app->delete('/files/:id/delete', 'deleteFile');
 //$app->get('/files/browse(/:dirId)', 'browseDir');
 $app->get('/users(/:id)', 'getUsers');
+//$app->map('/users/:id/edit', 'editUsers')->via('GET','POST');
 //$app->get('/users/edit/plan/:planId', 'editPlan');
 $app->delete('/users/del/:id', 'deleteUser');
 //
@@ -35,27 +39,27 @@ $app->run();
 // ROUTING ****************************************************
 
 function getHome() {
-    sendResponse(200, false, 'success', 'Home page | API is working great', null);                                    
+    sendResponse(200, false, 'success', 'Home page | API is working great', null);
 }
 
 function getLoginPage() {
 
-    $app = \Slim\Slim::getInstance();   
+    $app = \Slim\Slim::getInstance();
     $req = $app->request();
     switch ($app->request()->getMethod()) {
         case 'GET':
-            sendResponse(200, false, 'success', 'Welcome to authentication page', null);                                
+            sendResponse(200, false, 'success', 'Welcome to authentication page', null);
             //
             break;
         case 'POST' :
             //            
 //            echo ($req->post('username').'-----------'. $req->post('password')) ;            
-            $check = doLogin($req->post('username'), $req->post('password'));            
+            $check = doLogin($req->post('username'), $req->post('password'));
             //   
             if ($check) {
-                sendResponse(200, false, 'success', 'Authentication success', $user = \UserModel::where('username', '=', $req->post('username'))->first());                                
+                sendResponse(200, false, 'success', 'Authentication success', $user = \UserModel::where('username', '=', $req->post('username'))->first());
             } else {
-                sendResponse(404, true, 'fail', 'Authentication failed, User/Password not found', null);                                
+                sendResponse(404, true, 'fail', 'Authentication failed, User/Password not found', null);
             }
 
             break;
@@ -68,7 +72,7 @@ function getUsers($id = null) {
     try {
         if ($id == null) {
             sendResponse(200, false, 'success', 'Users found', $userDao->getAll()->toArray());
-        } else {            
+        } else {
             sendResponse(200, false, 'success', 'User found', $userDao->get($id)->toArray());
         }
     } catch (Exception $ex) {
@@ -82,7 +86,7 @@ function registerUser() {
 
     switch ($req->getMethod()) {
         case "POST":
-            $userDao = new \UserController();            
+            $userDao = new \UserController();
 //
             $user = new User(array(
                 'fullname' => $req->post('fullname'),
@@ -112,7 +116,6 @@ function deleteUser($id) {
     }
 }
 
-
 function uploadFiles() {
     $uploader = new FileHelper();
     $upload_dir = ROOT_FOLDER;
@@ -130,7 +133,44 @@ function uploadFiles() {
     }
 }
 
-function sendResponse($code = 404, $error = true, $status ='fail', $message = null, $data = null) {
+function downloadFile($id = null) {
+    if ($id != null) {
+        try {
+            $path = getFilePath($id);
+
+            if ($path) {
+                $download = fileDownload::createFromFilePath($path['path']);
+                $download->sendDownload($path['filename']);
+            }
+
+
+            //sendResponse(200, false, 'success', 'Downloading', $folder.$filename);
+        } catch (Exception $ex) {
+            sendResponse(404, true, 'fail', 'File not found', $ex);
+        }
+    } else {
+        sendResponse(404, true, 'fail', 'File not found', null);
+        return false;
+    }
+}
+
+function deleteFile($id = null) {
+    try {
+        $path = getFilePath($id)['path'];
+        unlink($path);
+        $fileDao = new FileDao();
+        $fileDao->delete($id)   ;     
+        sendResponse(202, false, 'success', 'File deleted', null);
+    } catch (Exception $ex) {
+        sendResponse(404, true, 'fail', 'An error occured. File not found', $ex);
+    }
+}
+
+function editUsers() {
+    return true;
+}
+
+function sendResponse($code = 404, $error = true, $status = 'fail', $message = null, $data = null) {
     $app = \Slim\Slim::getInstance();
     $app->status($code);
     $app->contentType('application/json');
@@ -156,18 +196,31 @@ function get_extension($file_name) {
     return strtolower($ext);
 }
 
-function doLogin($username = null  , $password = null) {
-    
-    if($username == null || $password == null){return false;}
+function getFilePath($id) {
+    $fileDao = new FileDao();
+    $data = $fileDao->get($id);
+    $filename = $data->toArray()['filename'];
+    $folder = ROOT_FOLDER;
+
+    return array(
+        'path' => realpath($folder . '\\' . $filename),
+        'filename' => $filename);
+}
+
+function doLogin($username = null, $password = null) {
+
+    if ($username == null || $password == null) {
+        return false;
+    }
     //
-    try {            
-        $q = \UserModel::select('id','username','encrypted_password')->whereusername($username);   
+    try {
+        $q = \UserModel::select('id', 'username', 'encrypted_password')->whereusername($username);
         $user = $q->get()->toArray();
-        $crypt_pass =  $user[0]['encrypted_password']     ;    
-        
+        $crypt_pass = $user[0]['encrypted_password'];
+
         if ($q != null) {
             $check = \PassHash::checkHash($crypt_pass, $password);
-             //echo $q;
+            //echo $q;
             if ($check) {
                 return true;
             } else {
@@ -176,7 +229,6 @@ function doLogin($username = null  , $password = null) {
         } else {
             return false;
         }
-
         //
     } catch (Exception $ex) {
         throw $ex;
